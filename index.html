@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/league.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+		.b-left {
+			text-align: left;
+			float: left;
+			width: 60%;
+		}
+
+		.b-right {
+			float: right;
+			text-align: right;
+			width: 40%;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>GraphQL</h1>
+					<img class="plain" src="img/graphql-logo.png" width="300" height="300">
+				</section>
+				<section>
+					<h2>¿Cómo trabajamos actualmente?</h2>
+				</section>
+				<section>
+					<img class="plain" src="img/rest-3.png" width="501" height="381">
+				</section>
+				<section>
+					<img class="plain" src="img/que-es-graphql-1.png" width="501" height="381">
+				</section>
+				<section>
+					<img class="plain" src="img/rest-4.png" width="603" height="603">
+					<p>REST - Un request para cada petición</p>
+				</section>
+				<section>
+					<img class="plain" src="img/rest-5.png" width="433" height="553">
+					<p>REST - Un request para cada petición</p>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						Pérdida de convenciones REST cuando se tiene data altamente relacionada
+
+						```
+						/users/23/friends/companies
+						/users/23/friends_with_companies_and_positions
+						```
+						![confused](https://media.giphy.com/media/xDQ3Oql1BN54c/giphy.gif "Confused")
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						Data innecesaria
+						```
+						{
+							name: "Orbis Ventures", ⇦
+							ruc: 23453457823,
+							employee_count: 50,
+							description: "Transactional business unit of El Comercio"
+						}
+						```
+					</script>
+				</section>
+				<section>
+					<img class="plain" src="img/rest-to-graphql.png" width="900" height="450">
+				</section>
+				<section>
+					<h2>Problemáticas que resuelve GraphQL</h2>
+					<ol>
+						<li>Dificultad en decidir la estructura de la URL cuando se tienen relaciones muy anidadas.</li>
+						<li>Podemos ejecutar fácilmente multiples solicitudes http para obtener la data que necesitamos.</li>
+						<li>Sobrecarga de datos.</li>
+					</ul>
+				</section>
+				<section>
+					<h2>¿Qué es GraphQL?</h2>
+				</section>
+				<section>
+					<p>GraphQL es un lenguaje de consulta para tu API, y un runtime del lado del servidor para ejecutar consultas mediante el uso de un sistema de tipado (schema) que defina para tus datos.</p>
+				</section>
+				<section>
+					<img class="plain" src="img/que-es-graphql-1.png" width="501" height="381">
+				</section>
+				<section>
+					<img class="plain" src="img/que-es-graphql-2.png" width="571" height="501">
+				</section>
+				<section>
+					<div class="b-left">
+						<img class="plain" src="img/que-es-graphql-3.png" width="571" height="501">
+					</div>
+					<div data-markdown class="b-right">
+						<script type="text/template">
+							```
+							query {
+								user(id:"23"){
+
+								}
+							}
+							```
+						</script>
+					</div>
+				</section>
+				<section>
+					<div class="b-left">
+						<img class="plain" src="img/que-es-graphql-4.png" width="571" height="501">
+					</div>
+					<div data-markdown class="b-right">
+						<script type="text/template">
+							```
+							query {
+								user(id:"23"){
+									friends {
+
+									}
+								}
+							}
+							```
+						</script>
+					</div>
+				</section>
+				<section>
+					<div class="b-left">
+						<img class="plain" src="img/que-es-graphql-5.png" width="571" height="501">
+					</div>
+					<div data-markdown class="b-right">
+						<script type="text/template">
+							```
+							query {
+								user(id:"23"){
+									friends {
+										company {
+											name
+										}
+									}
+								}
+							}
+							```
+						</script>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				center: true,
+				controls: false,
+				history: true,
+				slideNumber: true,
+				transition: 'fade',
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
