@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>GraphQL</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/league.css">
+		<link rel="stylesheet" href="css/theme/gaslight.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -40,50 +40,55 @@
 				<section>
 					<h1>GraphQL</h1>
 					<img class="plain" src="img/graphql-logo.png" width="300" height="300">
+					<p>
+						<small>por <a href="http://lavaldi.com">Claudia Valdivieso</a></small>
+					</p>
 				</section>
 				<section>
-					<h2>¿Cómo trabajamos actualmente?</h2>
-				</section>
-				<section>
-					<img class="plain" src="img/rest-3.png" width="501" height="381">
-				</section>
-				<section>
-					<img class="plain" src="img/que-es-graphql-1.png" width="501" height="381">
-				</section>
-				<section>
-					<img class="plain" src="img/rest-4.png" width="603" height="603">
-					<p>REST - Un request para cada petición</p>
-				</section>
-				<section>
-					<img class="plain" src="img/rest-5.png" width="433" height="553">
-					<p>REST - Un request para cada petición</p>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
-						Pérdida de convenciones REST cuando se tiene data altamente relacionada
+					<section>
+						<h2>¿Cómo trabajamos actualmente?</h2>
+					</section>
+					<section>
+						<img class="plain" src="img/rest-3.png" width="501" height="381">
+					</section>
+					<section>
+						<img class="plain" src="img/que-es-graphql-1.png" width="501" height="381">
+					</section>
+					<section>
+						<img class="plain" src="img/rest-4.png" width="603" height="603">
+						<p>REST - Un request para cada petición</p>
+					</section>
+					<section>
+						<img class="plain" src="img/rest-5.png" width="433" height="553">
+						<p>REST - Un request para cada petición</p>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							Pérdida de convenciones REST cuando se tiene data altamente relacionada
 
-						```
-						/users/23/friends/companies
-						/users/23/friends_with_companies_and_positions
-						```
-						![confused](https://media.giphy.com/media/xDQ3Oql1BN54c/giphy.gif "Confused")
-					</script>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
-						Data innecesaria
-						```
-						{
-							name: "Orbis Ventures", ⇦
-							ruc: 23453457823,
-							employee_count: 50,
-							description: "Transactional business unit of El Comercio"
-						}
-						```
-					</script>
-				</section>
-				<section>
-					<img class="plain" src="img/rest-to-graphql.png" width="900" height="450">
+							```
+							/users/23/friends/companies
+							/users/23/friends_with_companies_and_positions
+							```
+							![confused](https://media.giphy.com/media/xDQ3Oql1BN54c/giphy.gif "Confused")
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							Data innecesaria
+							```
+							{
+								name: "Orbis Ventures", ⇦
+								ruc: 23453457823,
+								employee_count: 50,
+								description: "Transactional business unit of El Comercio"
+							}
+							```
+						</script>
+					</section>
+					<section>
+						<img class="plain" src="img/rest-to-graphql.png" width="900" height="450">
+					</section>
 				</section>
 				<section>
 					<h2>Problemáticas que resuelve GraphQL</h2>
@@ -94,70 +99,75 @@
 					</ul>
 				</section>
 				<section>
-					<h2>¿Qué es GraphQL?</h2>
-				</section>
-				<section>
-					<p>GraphQL es un lenguaje de consulta para tu API, y un runtime del lado del servidor para ejecutar consultas mediante el uso de un sistema de tipado (schema) que defina para tus datos.</p>
-				</section>
-				<section>
-					<img class="plain" src="img/que-es-graphql-1.png" width="501" height="381">
-				</section>
-				<section>
-					<img class="plain" src="img/que-es-graphql-2.png" width="571" height="501">
-				</section>
-				<section>
-					<div class="b-left">
-						<img class="plain" src="img/que-es-graphql-3.png" width="571" height="501">
-					</div>
-					<div data-markdown class="b-right">
-						<script type="text/template">
-							```
-							query {
-								user(id:"23"){
-
-								}
-							}
-							```
-						</script>
-					</div>
-				</section>
-				<section>
-					<div class="b-left">
-						<img class="plain" src="img/que-es-graphql-4.png" width="571" height="501">
-					</div>
-					<div data-markdown class="b-right">
-						<script type="text/template">
-							```
-							query {
-								user(id:"23"){
-									friends {
+					<section>
+						<h2>¿Qué es GraphQL?</h2>
+					</section>
+					<section>
+						<p>GraphQL es un lenguaje de consulta para tu API, y un runtime del lado del servidor para ejecutar consultas mediante el uso de un sistema de tipado (schema) que defina para tus datos.</p>
+					</section>
+					<section>
+						<img class="plain" src="img/que-es-graphql-1.png" width="501" height="381">
+					</section>
+					<section>
+						<img class="plain" src="img/que-es-graphql-2.png" width="571" height="501">
+					</section>
+					<section>
+						<div class="b-left">
+							<img class="plain" src="img/que-es-graphql-3.png" width="571" height="501">
+						</div>
+						<div data-markdown class="b-right">
+							<script type="text/template">
+								```
+								query {
+									user(id:"23"){
 
 									}
 								}
-							}
-							```
-						</script>
-					</div>
-				</section>
-				<section>
-					<div class="b-left">
-						<img class="plain" src="img/que-es-graphql-5.png" width="571" height="501">
-					</div>
-					<div data-markdown class="b-right">
-						<script type="text/template">
-							```
-							query {
-								user(id:"23"){
-									friends {
-										company {
-											name
+								```
+							</script>
+						</div>
+					</section>
+					<section>
+						<div class="b-left">
+							<img class="plain" src="img/que-es-graphql-4.png" width="571" height="501">
+						</div>
+						<div data-markdown class="b-right">
+							<script type="text/template">
+								```
+								query {
+									user(id:"23"){
+										friends {
+
 										}
 									}
 								}
-							}
-							```
-						</script>
-					</div>
+								```
+							</script>
+						</div>
+					</section>
+					<section>
+						<div class="b-left">
+							<img class="plain" src="img/que-es-graphql-5.png" width="571" height="501">
+						</div>
+						<div data-markdown class="b-right">
+							<script type="text/template">
+								```
+								query {
+									user(id:"23"){
+										friends {
+											company {
+												name
+											}
+										}
+									}
+								}
+								```
+							</script>
+						</div>
+					</section>
+				</section>	
+				<section>
+					<h2>Conceptos Básicos</h2>
 				</section>
 			</div>
 		</div>
