@@ -167,8 +167,179 @@
 					</section>
 				</section>	
 				<section>
-					<h2>Conceptos Básicos</h2>
-					<p>https://superchris.github.io/graphql-slides/#/15</p>
+					<section>
+						<h2>Conceptos Básicos</h2>
+					</section>
+					<section>
+						<p>El schema es el que hace funcionar todo en GraphQL</p>
+					</section>
+					<section>
+						<p>Un schema es un grafo de tipos</p>
+						<img class="plain" src="img/que-es-graphql-2.png" width="571" height="501">
+					</section>
+					<section>
+						<h2>Tipos Escalares</h2>
+						<ul>
+							<li>Int</li>
+							<li>Float</li>
+							<li>String</li>
+							<li>Boolean</li>
+							<li>ID</li>
+							<li><i>Tipo customizado</i></li>
+						</ul>
+					</section>
+					<section>
+						<h2>Objetos Tipo</h2>
+						<p>tienen campos</p>
+						<div data-markdown>
+							<script type="text/template">
+								```
+								type User {
+									id: String
+									firstName: String
+									age: Int
+									company: Company
+								}
+								```
+							</script>
+						</div>
+					</section>
+					<section>
+						<p>los campos pueden tener argumentos</p>
+						<div data-markdown>
+							<script type="text/template">
+								```
+								type User {
+									firstName: String
+									posts(limit: Int)
+								}
+								```
+							</script>
+						</div>
+						<p>usando los argumentos</p>
+						<div class="b-left">
+							<div data-markdown>
+								<script type="text/template">
+									```
+									query {
+										users {
+											firstName
+											posts(limit: 3)
+										}
+									}
+									```
+								</script>
+							</div>
+						</div>
+						<div data-markdown class="b-right">
+							<script type="text/template">
+								```
+								{
+									"data": {
+										"users": {
+											"name": "Test 2",
+											"posts": [
+										  	...
+											]
+									  	}
+									}
+								}
+								```
+							</script>
+						</div>
+					</section>
+					<section>
+						<h2>Root types</h2>
+						<p><b>Query:</b> Un tipo que define todas las consultas posibles.</p>
+						<div data-markdown>
+							<script type="text/template">
+								```
+								type RootQueryType {
+									users: [User]
+									user(id: String): User
+									company(id: String): Company
+								}
+								```
+							</script>
+						</div>
+					</section>
+					<section>
+						<h2>Root types</h2>
+						<p><b>Mutation:</b> Un tipo cuyos campos definen todas las mutaciones posibles.</p>
+						<div data-markdown>
+							<script type="text/template">
+								```
+								addUser(
+									firstName: String!
+									age: Int!
+									companyId: String
+								): User
+								deleteUser(id: String!): User
+								editUser(
+									id: String!
+									firstName: String
+									age: Int
+									companyId: String
+								): User
+								```
+							</script>
+						</div>
+					</section>
+					<section>
+						<h2>Variables</h2>
+						<div data-markdown>
+							<script type="text/template">
+								```
+								mutation ($id: String!){
+									deleteUser(id: $id) {
+										id
+									}
+								}
+								```
+							</script>
+						</div>
+					</section>
+					<section>
+						<h2>Fragmentos</h2>
+						<div data-markdown>
+							<script type="text/template">
+								```
+								fragment AddressFields on Address {
+									line1
+									city
+									state
+									zip
+								}
+								  
+								query {
+									users {
+										firstName
+										address {
+											...AddressFields
+									    }
+									}
+								}
+								```
+							</script>
+						</div>
+					</section>
+					<section>
+						<p>Y mucho más que ver...</p>
+						<ul>
+							<li>Aliases</li>
+							<li>Operation Name</li>
+							<li>Directives</li>
+							<li>Interfaces</li>
+							<li>Enum types</li>
+							<li>Union Types</li>
+							<li>Input Types</li>
+							<li>...</li>
+						</ul>
+						<p><a href="http://graphql.org/learn/">graphql.org</a></p>
+					</section>
+				</section>
+				<section>
+					<h2>Ejemplo</h2>
 				</section>
 			</div>
 		</div>

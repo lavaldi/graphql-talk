@@ -1,3 +1,3 @@
 # GraphQL Talk
 
-Presentación de GraphQL para Orbis Ventures.
+Slides for GraphQL to Orbis Ventures.
