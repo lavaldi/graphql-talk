@@ -1,5 +1,6 @@
 import { Head } from 'mdx-deck'
 import { Image } from 'mdx-deck'
+import { Appear } from 'mdx-deck'
 export { default as theme } from './theme'
 import { CodeSurfer } from 'mdx-deck-code-surfer'
 
@@ -166,5 +167,25 @@ Es un lenguaje de consulta de código abierto creado por Facebook
 
 ```notes
 👉 Con GraphQL es más complejo que implementar una caché en REST. Ya que en REST, se accede a los recursos con URLs, por lo que se puede cachear porque se tiene la URL del recurso como identificador. En GraphQL, esto se vuelve complejo porque cada consulta puede ser diferente, aunque opere en la misma entidad.
+
 Ej. Sólo puede solicitar el nombre de un autor en una consulta, pero en la siguiente se quiere saber la dirección de correo electrónico. Ahí es donde se necesita una caché de grano más fino a nivel de campo, que puede ser difícil de implementar. Sin embargo, la mayoría de las librerías construidas sobre GraphQL ofrecen mecanismos de cacheo.
+```
+
+---
+
+## ¿Por qué no REST? 🤔
+
+---
+
+<ul>
+  <Appear>
+    <li>Una URL para cada recurso</li>
+    <li>Puede generar solicitudes de cascada ineficientes</li>
+    <li>El cliente no decide sobre los datos</li>
+  </Appear>
+</ul>
+
+```notes
+👉 Por ejemplo, imagina que quieres obtener una entidad de autor identificada por un id, y luego obtienes todos los artículos de este autor usando el id del autor. En GraphQL, esta es una única petición, lo cual es más eficiente. Si sólo desea obtener los artículos del autor sin la entidad de autor completa, GraphQL le permite seleccionar sólo las partes que necesita. En REST, se sobrecargaría a toda la entidad autora.
+👉 Esta es la razón principal por la que GraphQL fue inventado en primer lugar, porque el cliente móvil de Facebook requería datos diferentes a los de su cliente web.
 ```
