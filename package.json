@@ -5,10 +5,10 @@
   "scripts": {
     "start": "mdx-deck deck.mdx",
     "prebuild": "rimraf dist",
-    "build": "mdx-deck build --no-html deck.js",
+    "build": "mdx-deck build --no-html deck.mdx",
     "postbuild": "cpy --parents \"public/**\" ./dist",
     "deploy": "gh-pages -d dist",
-    "pdf": "mdx-deck pdf deck.js",
+    "pdf": "mdx-deck pdf deck.mdx",
     "help": "mdx-deck"
   },
   "repository": "https://github.com/lavaldi/graphql-talk.git",
