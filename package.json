@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "description": "GraphQl slides",
   "scripts": {
-    "start": "mdx-deck deck.mdx",
+    "start": "mdx-deck -p 1234 deck.mdx",
     "prebuild": "rimraf dist",
     "build": "mdx-deck build --no-html deck.mdx",
     "postbuild": "cpy --parents \"public/**\" ./dist",

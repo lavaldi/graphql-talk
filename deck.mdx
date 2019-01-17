@@ -1,4 +1,5 @@
 import { Head } from 'mdx-deck'
+import { Image } from 'mdx-deck'
 export { default as theme } from './theme'
 import { CodeSurfer } from 'mdx-deck-code-surfer'
 
@@ -38,3 +39,132 @@ Es un lenguaje de consulta de código abierto creado por Facebook
 ---
 
 ¡Eso es GraphQL! La aplicación servidor ofrece un esquema GraphQL, donde se definen todos los datos disponibles con su jerarquía y tipos, y una aplicación cliente **sólo** consulta los datos requeridos.
+
+---
+
+## Ventajas 👍
+
+---
+
+- Obtención de datos declarativos.
+
+```notes
+👉 El cliente solicita en una sola consulta un conjunto de datos a obtener. Estos pueden ser de una sola entidad o de relaciones entre entidades.
+```
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./examples/declarative-data.txt")}
+  lang="graphql"
+/>
+
+---
+
+- No hay sobrecarga de datos.
+
+```notes
+👉 Un cliente móvil suele sobrecargar datos cuando hay una API idéntica a la del cliente web con una API REST. Con GraphQL, el cliente móvil puede elegir un conjunto diferente de campos, por lo que sólo puede obtener la información necesaria para lo que está en pantalla.
+```
+
+---
+
+- GraphQL para React, Angular, Node, etc.
+
+```notes
+👉 GraphQL está desacoplado de cualquier solución de frontend o backend. La implementación de referencia de GraphQL está escrita en JavaScript, por lo que se puede usar GraphQL en cualquier framework o librería del lado del cliente y del servidor.
+```
+
+---
+
+- Una sola fuente de verdad
+
+```notes
+👉 El esquema GraphQL es la única fuente de verdad en las aplicaciones GraphQL, ya que es donde se describen todos los datos disponibles. Las queries y los mutation se realizan basados en el esquema que ofrece la aplicación del lado del servidor.
+```
+
+---
+
+<Image src='./public/schema-gateway.png' />
+
+---
+
+- Adopta las tendencias modernas
+
+```notes
+👉 Es posible que sólo tenga una aplicación back-end, pero varios clientes en la web, teléfonos y smartwatches, dependiendo de sus datos. GraphQL puede cumplir con los requisitos de cada aplicación del cliente - red, relaciones anidadas de datos, obtención de sólo los datos requeridos - sin una API dedicada para cada cliente. En el lado del servidor, puede haber un backend, pero también un grupo de microservicios que ofrecen sus funcionalidades específicas.
+```
+
+---
+
+- Unión de Esquemas
+
+---
+
+- Introspección
+
+```notes
+👉 Dado que el esquema tiene toda la información sobre los datos disponibles a través de la API de GraphQL, es perfecto para autogenerar la documentación de la API.
+```
+
+---
+
+- Fuertemente tipado
+
+---
+
+<CodeSurfer
+  code={`
+  type References {
+    id: Int!
+    experienceId: Int!
+    experienceJob: String!
+    name: String
+    primaryCellphone: String!
+    secondaryCellphone: String
+    email: String!
+    job: String!
+    company: String!
+  }
+  `}
+  lang="graphql"
+/>
+
+---
+
+- Versionado
+
+```notes
+👉 En GraphQL no hay versionado como en una API REST, lo que se hace es deprecar un campo y les llega la notificación a los clientes de que el campo está deprecado. Después de un tiempo, el campo obsoleto puede eliminarse del esquema cuando ya no lo utilizan muchos clinetes. Esto hace posible evolucionar una API GraphQL a lo largo del tiempo sin necesidad de versionar.
+```
+
+---
+
+## Desventajas 👎
+
+---
+
+- Complejidad de la consulta
+
+```notes
+👉 GraphQL no es un reemplazo para las bases de datos del lado del servidor, sólo es un lenguaje de consulta. Es decir que una query necesita ser resuelta con datos en el servidor (ej. base de datos).
+👉 Además, GraphQL no elimina los cuellos de botella de rendimiento cuando tiene que acceder a múltiples campos (autores, artículos, comentarios) en una consulta, porque todavía tienen que ser recuperados de una fuente de datos.
+⚠️ Hay que tener cuidado cuando se solicita demasiados campos anidados a la vez. Debe haber un mecanismo como la profundidad máxima de las consultas, checar la complejidad de las consultas, evitar la recursión, o las consultas persistentes para detener las solicitudes ineficientes del lado del servidor.
+```
+
+---
+
+- Limitación de la velocidad
+
+```notes
+👉 Mientras que en REST es más sencillo decir "sólo permitimos un número limitado de peticiones de recursos en un día", resulta difícil hacer una declaración de este tipo para operaciones individuales de GraphQL, ya que puede ser todo entre una operación barata y una operación costosa.
+```
+
+---
+
+- Almacenamiento en caché
+
+```notes
+👉 Con GraphQL es más complejo que implementar una caché en REST. Ya que en REST, se accede a los recursos con URLs, por lo que se puede cachear porque se tiene la URL del recurso como identificador. En GraphQL, esto se vuelve complejo porque cada consulta puede ser diferente, aunque opere en la misma entidad.
+Ej. Sólo puede solicitar el nombre de un autor en una consulta, pero en la siguiente se quiere saber la dirección de correo electrónico. Ahí es donde se necesita una caché de grano más fino a nivel de campo, que puede ser difícil de implementar. Sin embargo, la mayoría de las librerías construidas sobre GraphQL ofrecen mecanismos de cacheo.
+```
