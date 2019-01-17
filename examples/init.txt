@@ -1,0 +1,31 @@
+// a GraphQL query
+author(id: "7") {
+  id
+  name
+  avatarUrl
+  articles(limit: 2) {
+    name
+    urlSlug
+  }
+}
+
+// a GraphQL query result
+{
+  "data": {
+    "author": {
+      "id": "7",
+      "name": "Claudia Valdivieso",
+      "avatarUrl": "https://example.com/authors/7",
+      "articles": [
+        {
+          "name": "Tutorial de GraphQL",
+          "urlSlug": "tutorial-de-graphql"
+        },
+        {
+          "name": "Tutorial de React",
+          "urlSlug": "tutorial-de-react"
+        }
+      ]
+    }
+  }
+}

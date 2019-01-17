@@ -1,0 +1,27 @@
+{
+  "name": "graphql-talk",
+  "version": "2.0.0",
+  "description": "GraphQl slides",
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "prebuild": "rimraf dist",
+    "build": "mdx-deck build --no-html deck.js",
+    "postbuild": "cpy --parents \"public/**\" ./dist",
+    "deploy": "gh-pages -d dist",
+    "pdf": "mdx-deck pdf deck.js",
+    "help": "mdx-deck"
+  },
+  "repository": "https://github.com/lavaldi/graphql-talk.git",
+  "author": "Claudia Valdivieso <claumavaldivieso@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "cpy-cli": "^2.0.0",
+    "gh-pages": "^2.0.1",
+    "mdx-deck": "^1.8.2",
+    "rimraf": "^2.6.3"
+  },
+  "dependencies": {
+    "mdx-deck-code-surfer": "^0.5.3",
+    "raw-loader": "^1.0.0"
+  }
+}

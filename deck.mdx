@@ -1,0 +1,40 @@
+import { Head } from 'mdx-deck'
+export { default as theme } from './theme'
+import { CodeSurfer } from 'mdx-deck-code-surfer'
+
+<Head>
+  <link rel="shortcut icon" href="./public/favicon.png" type="image/png" />
+  <title>GraphQL Talk - La Valdi</title>
+</Head>
+
+![GraphQL logo](./public/logo.svg)
+# GraphQL
+
+---
+
+## ¿Qué es GraphQL?
+
+```notes
+Es un lenguaje de consulta de código abierto creado por Facebook
+```
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./examples/init.txt")}
+  lang="graphql"
+  steps={[
+    { notes: ""},
+    { lines: [2,6], notes: "Fields" },
+    { lines: [7,8], notes: "Nested fields" }
+  ]}
+/>
+
+```notes
+👉 Una QUERY puede solicitar múltiples recursos (author, article), llamados FIELDS en GraphQL, y sólo un conjunto particular de campos anidados para estos campos (name, urlSlug para article), aunque la entidad misma puede ofrecer más datos en su esquema GraphQL (por ejemplo, description, releaseData para el article).
+👉 Una arquitectura RESTful necesita al menos dos peticiones en cascada para recuperar la entidad de autor y sus artículos, pero con GraphQL lo hemos hecho en una. Además, la sólo seleccionamos los campos necesarios en lugar de toda la entidad.
+```
+
+---
+
+¡Eso es GraphQL! La aplicación servidor ofrece un esquema GraphQL, donde se definen todos los datos disponibles con su jerarquía y tipos, y una aplicación cliente **sólo** consulta los datos requeridos.
